@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1> Listes des articles  </h1> <br>
+    <div class="container">
+        <a href="{{ path('create') }}" class="btn btn-primary"> Créer </a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for concept in concepts %}
+            <tr>
+                <th scope="row"> {{ concept.Titre }}</th>
+                <td>{{ concept.Description }}</td>
+                <td>{{ concept.createdAt | date('d/m/Y') }}</td>
+                <td>{{ concept.auteur }}</td>
+                <td> <a href="{{ path('show', {id: concept.id}) }}" class="btn btn-success"> SHOW </a>
+                     <a href="{{ path('show', {id: concept.id}) }}" class="btn btn-danger"> DELETE </a>
+                     <a href="{{ path('edit', {id: concept.id}) }}" class="btn btn-primary"> EDIT </a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
